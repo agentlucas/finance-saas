@@ -1,0 +1,6 @@
+{
+  "buildCommand": "cd ../.. && pnpm install && pnpm --filter @finance-saas/web build",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "installCommand": "echo 'Skipping install, using buildCommand instead'"
+}
