@@ -1,0 +1,17 @@
+{
+  "name": "finance-saas",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Finance SaaS monorepo - NestJS backend + Next.js frontend",
+  "scripts": {
+    "dev": "pnpm --parallel --filter './apps/*' dev",
+    "build": "pnpm --filter './apps/*' build",
+    "db:push": "pnpm --filter '@finance-saas/api' db:push",
+    "db:migrate": "pnpm --filter '@finance-saas/api' db:migrate",
+    "db:seed": "pnpm --filter '@finance-saas/api' db:seed"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  }
+}

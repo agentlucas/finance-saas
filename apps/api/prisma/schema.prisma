@@ -1,0 +1,80 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String    @id @default(cuid())
+  email     String    @unique
+  password  String
+  name      String?
+  role      Role      @default(USER)
+  accounts  Account[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model Account {
+  id           String        @id @default(cuid())
+  name         String
+  type         AccountType
+  currency     String        @default("USD")
+  balance      Decimal       @default(0) @db.Decimal(19, 4)
+  userId       String
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions Transaction[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  @@index([userId])
+}
+
+enum AccountType {
+  CASH
+  BANK
+  CREDIT_CARD
+  INVESTMENT
+}
+
+model Transaction {
+  id          String          @id @default(cuid())
+  amount      Decimal         @db.Decimal(19, 4)
+  type        TransactionType
+  description String?
+  date        DateTime        @default(now())
+  accountId   String
+  account     Account         @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  categoryId  String?
+  category    Category?       @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  @@index([accountId])
+  @@index([categoryId])
+  @@index([date])
+}
+
+enum TransactionType {
+  INCOME
+  EXPENSE
+}
+
+model Category {
+  id           String          @id @default(cuid())
+  name         String
+  type         TransactionType
+  icon         String?
+  color        String?
+  transactions Transaction[]
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+}
