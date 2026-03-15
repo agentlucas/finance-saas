@@ -5,7 +5,8 @@
   "description": "Finance SaaS monorepo - NestJS backend + Next.js frontend",
   "scripts": {
     "dev": "pnpm --parallel --filter './apps/*' dev",
-    "build": "pnpm --filter './apps/*' build",
+    "build": "cd apps/api && pnpm install && pnpm prisma generate && pnpm build",
+    "start": "cd apps/api && node dist/main.js",
     "db:push": "pnpm --filter '@finance-saas/api' db:push",
     "db:migrate": "pnpm --filter '@finance-saas/api' db:migrate",
     "db:seed": "pnpm --filter '@finance-saas/api' db:seed"
