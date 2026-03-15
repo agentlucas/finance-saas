@@ -113,8 +113,22 @@ Visit `https://<vercel-url>` and verify the landing page loads.
 - **Backend API:** https://finance-api-production-7f7c.up.railway.app
 - **Health Check:** https://finance-api-production-7f7c.up.railway.app/health
 
-**Test Credentials Created:**
-- Email: demo@finance.com
-- Password: demopass123
+**Test Credentials:**
+| Email | Password | Role | Notes |
+|-------|----------|------|-------|
+| admin@test.com | admin123 | ADMIN | ✅ Full access - Phase 1 verified |
+| user@test.com | user123 | USER | ✅ Standard user access |
 
-**Deployment Date:** March 15, 2026
+**Environment Variables:**
+- Vercel: `NEXT_PUBLIC_API_URL` = https://finance-api-production-7f7c.up.railway.app
+- Railway: `FRONTEND_URL` = https://web-omega-hazel-40.vercel.app
+
+**Phase 1 Status:** ✅ **COMPLETE**
+- Frontend login flow implemented and working
+- Admin user created with proper ADMIN role
+- Authentication, JWT storage, logout all functional
+- Protected routes working
+- CORS configured correctly
+
+**Deployment Date:** March 15, 2026  
+**Last Updated:** March 15, 2026 - Phase 1 Completion
