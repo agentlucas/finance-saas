@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import * as bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
 
@@ -28,6 +29,36 @@ async function main() {
   }
 
   console.log('✅ Seeded categories');
+
+  // Seed test users
+  const hashedUserPassword = await bcrypt.hash('user123', 10);
+  const hashedAdminPassword = await bcrypt.hash('admin123', 10);
+
+  await prisma.user.upsert({
+    where: { email: 'user@test.com' },
+    update: {},
+    create: {
+      email: 'user@test.com',
+      name: 'Test User',
+      password: hashedUserPassword,
+      role: 'USER',
+    },
+  });
+
+  await prisma.user.upsert({
+    where: { email: 'admin@test.com' },
+    update: { role: 'ADMIN' }, // Update existing user to ADMIN if exists
+    create: {
+      email: 'admin@test.com',
+      name: 'Admin User',
+      password: hashedAdminPassword,
+      role: 'ADMIN',
+    },
+  });
+
+  console.log('✅ Seeded test users');
+  console.log('   - user@test.com / user123 (USER)');
+  console.log('   - admin@test.com / admin123 (ADMIN)');
 }
 
 main()
