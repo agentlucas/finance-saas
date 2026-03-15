@@ -1,8 +1,8 @@
 {
-  "$schema": "https://railway.app/railway.schema.json",
+  "$schema": "https://railway.com/railway.schema.json",
   "build": {
     "builder": "NIXPACKS",
-    "buildCommand": "cd ../.. && pnpm install && pnpm --filter @finance-saas/api build"
+    "buildCommand": "cd ../.. && pnpm install && pnpm --filter @finance-saas/api prisma generate && pnpm --filter @finance-saas/api build"
   },
   "deploy": {
     "startCommand": "node dist/main.js",
