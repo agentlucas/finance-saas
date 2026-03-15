@@ -98,9 +98,19 @@ Visit `https://<vercel-url>` and verify the landing page loads.
 - ✅ Backend API with auth, users, accounts, transactions, categories
 - ✅ Frontend with Next.js, Tailwind, basic pages
 - ✅ Deployment config files added
+- ✅ Backend deployed to Railway
+- ✅ Backend health check passing
+- ✅ Public domain generated for backend
 
-**Pending Manual Steps:**
-- ⏳ Connect GitHub repo to Railway service
-- ⏳ Deploy backend to Railway
-- ⏳ Deploy frontend to Vercel
-- ⏳ Verify health endpoints
+**Backend URLs:**
+- API: https://finance-api-production-7f7c.up.railway.app
+- Health: https://finance-api-production-7f7c.up.railway.app/health
+
+**In Progress:**
+- ⏳ Frontend deploying to Vercel (build in progress)
+- URL: https://web-9304a2k9x-agentlucas22-4650s-projects.vercel.app
+
+**Pending:**
+- ⏳ Run database migrations
+- ⏳ Seed database with initial data
+- ⏳ Final verification of full stack
