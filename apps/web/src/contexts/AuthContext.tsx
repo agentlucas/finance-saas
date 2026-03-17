@@ -67,8 +67,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       // Set user from response
       setUser(userData);
 
-      // Redirect to dashboard
-      router.push('/dashboard');
+      // Redirect based on role
+      if (userData.role === 'ADMIN') {
+        router.push('/admin');
+      } else {
+        router.push('/dashboard');
+      }
     } catch (error: any) {
       const message = error.response?.data?.message || 'Login failed';
       throw new Error(message);
